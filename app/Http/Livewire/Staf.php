@@ -8,6 +8,6 @@ class Staf extends Component
 {
     public function render()
     {
-        return view('livewire.staf');
+        return view('livewire.staf')->layout('v_staf');
     }
 }

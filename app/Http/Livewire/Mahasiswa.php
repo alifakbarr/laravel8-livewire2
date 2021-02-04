@@ -8,6 +8,6 @@ class Mahasiswa extends Component
 {
     public function render()
     {
-        return view('livewire.mahasiswa');
+        return view('livewire.mahasiswa')->layout('v_mahasiswa');
     }
 }
