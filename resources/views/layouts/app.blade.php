@@ -16,7 +16,7 @@
     
 @include('layouts.nav')
 {{-- file didalam folder livewire di views merupakan component --}}
-<div class="container">
+<div class="container mt-5">
   @yield('content')
 </div>
   </body>

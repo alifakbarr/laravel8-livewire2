@@ -18,6 +18,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/staf">Staf</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user">User</a>
+        </li>
       </ul>
     </div>
   </div>

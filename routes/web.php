@@ -3,6 +3,7 @@
 use App\Http\Livewire\Dosen;
 use App\Http\Livewire\Mahasiswa;
 use App\Http\Livewire\Staf;
+use App\Http\Livewire\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,4 @@ Route::get('/', function () {
 Route::get('/dosen',Dosen::class);
 Route::get('/mahasiswa',Mahasiswa::class);
 Route::get('/staf',Staf::class);
+Route::get('/user',User::class);
