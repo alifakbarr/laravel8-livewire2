@@ -8,6 +8,9 @@ class Dosen extends Component
 {
     public function render()
     {
-        return view('livewire.dosen')->layout('v_dosen');
+        return view('livewire.dosen')
+        // memasukkan template
+        ->extends('layouts.app')
+        ->section('content');
     }
 }

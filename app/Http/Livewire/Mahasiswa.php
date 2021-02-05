@@ -8,6 +8,9 @@ class Mahasiswa extends Component
 {
     public function render()
     {
-        return view('livewire.mahasiswa')->layout('v_mahasiswa');
+        return view('livewire.mahasiswa')
+        // memasukkan template
+        ->extends('layouts.app')
+        ->section('content');
     }
 }

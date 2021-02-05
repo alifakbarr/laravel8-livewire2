@@ -8,6 +8,9 @@ class Staf extends Component
 {
     public function render()
     {
-        return view('livewire.staf')->layout('v_staf');
+        return view('livewire.staf')
+        // memasukkan template
+        ->extends('layouts.app')
+        ->section('content');
     }
 }

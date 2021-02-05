@@ -1,3 +1,4 @@
 <div>
-    <h1>Halaman Component Dosen</h1>
+    @section('title','Dosen')     
+    <h1>Halaman Component Dosen</h1> 
 </div>
