@@ -23,7 +23,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Password</th>
+                        <th scope="col">Foto</th>
                         <th scope="col">Aksi</th>
                       </tr>
                     </thead>
@@ -35,7 +35,7 @@
                       <th>{{ $no++ }}</th>
                       <td>{{ $user->name }}</td>
                       <td>{{ $user->email }}</td>
-                      <td>{{ $user->password }}</td>
+                      <td><img src="{{ asset('storage') }}/{{ $user->foto }}" width="100px"></td>
                       <td>
                         {{-- wire:click.prevent="DetailData({{ $user->id }})" mengirim data berdasarkan id --}}
                         <button wire:click.prevent="DetailData({{ $user->id }})" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editData">Edit</button>
@@ -73,6 +73,11 @@
                     <label for="password" class="form-label">password</label>
                     <input name="password" type="password" wire:model="password" class="form-control" id="password">
                     @error('password') <label class="text-danger">{{ $message }}</label> @enderror
+                  </div>
+                  <div class="mb-3">
+                    <label for="foto" class="form-label">foto</label>
+                    <input name="foto" type="file" wire:model="foto" class="form-control" id="foto">
+                    @error('foto') <label class="text-danger">{{ $message }}</label> @enderror
                   </div>
                   
                 </form>

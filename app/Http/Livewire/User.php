@@ -5,9 +5,11 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\User as tableUser;
 use Illuminate\Support\Facades\Hash;
+use Livewire\WithFileUploads;
 
 class User extends Component
 {
+    use WithFileUploads;
     public $users;
 
     // $ids agar tidak bentrok
@@ -15,11 +17,13 @@ class User extends Component
     public $name;
     public $email;
     public $password;
+    public $foto;
     // aturan penulisan yang diinginkan
     protected $rules = [
         'name' => 'required',
         'email' => 'required|email',
         'password'=> 'required|min:4',
+        'foto'=> 'required|max:1024',
     ];
 
     // pesan error yang muncul
@@ -30,6 +34,8 @@ class User extends Component
         'email.unique' => 'Email sudah ada',
         'password.required' => 'Masukkan password',
         'password.min' => 'Min 4 char',
+        'foto.max' => 'Max 1mb',
+        'foto.required' => 'Masukkan foto',
 
     ];
 
@@ -37,6 +43,7 @@ class User extends Component
         $this->name='';
         $this->email='';
         $this->password='';
+        $this->foto='';
     }
 
     //real-time cek form 
@@ -54,12 +61,14 @@ class User extends Component
 
         // insert dengan encrype
         $this->validate();
+        $filename=$this->foto->store('foto','public');
         $data=[
             'name'=>$this->name,
             'email'=>$this->email,
             // 'password'=>$this->password,
             // encrype password
             'password'=>Hash::make($this->password),
+            'foto'=>$filename,
         ];
         tableUser::insert($data);
 
@@ -77,6 +86,7 @@ class User extends Component
         $this->name=$user->name;
         $this->email=$user->email;
         $this->password=$user->password;
+        $this->foto=$user->foto;
     }
 
     public function EditData(){
@@ -96,6 +106,7 @@ class User extends Component
     }
 
     public function DeleteData(){
+        unlink(public_path('storage/'.$this->foto));
         tableUser::where('id',$this->ids)->delete();
         session()->flash('hapus','Data berhasil Dihapus');
 
