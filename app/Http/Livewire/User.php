@@ -95,6 +95,12 @@ class User extends Component
         
     }
 
+    public function DeleteData(){
+        tableUser::where('id',$this->ids)->delete();
+        session()->flash('hapus','Data berhasil Dihapus');
+
+    }
+
     public function render()
     {
         // manampilkan semua data user

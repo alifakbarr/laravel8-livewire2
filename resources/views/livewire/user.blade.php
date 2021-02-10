@@ -12,6 +12,9 @@
         @if (session('pesan'))
             {{ session('pesan') }}
         @endif
+        @if (session('hapus'))
+            {{ session('hapus') }}
+        @endif
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
@@ -36,6 +39,7 @@
                       <td>
                         {{-- wire:click.prevent="DetailData({{ $user->id }})" mengirim data berdasarkan id --}}
                         <button wire:click.prevent="DetailData({{ $user->id }})" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editData">Edit</button>
+                        <button wire:click.prevent="DetailData({{ $user->id }})" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteData">Delete</button>
                       </td>
                     </tr>
                     @endforeach
@@ -120,6 +124,26 @@
           </div>
         </div>
         {{-- Akhir Modal Edit Data --}}
+        <!-- Modal delete Data-->
+        {{-- wire:ignore.self agar saat di submit ngeclose --}}
+        <div wire:ignore.self class="modal fade" id="deleteData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Data ({{ $name }})</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                apakah anda ingin hapus data
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger" wire:click.prevent="DeleteData()">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{-- akhir delete modal --}}
         <script>
           window.livewire.on('addData',()=>{
             $('#addData').modal('hide');
