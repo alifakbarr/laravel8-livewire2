@@ -6,10 +6,15 @@ use Livewire\Component;
 use App\Models\User as tableUser;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class User extends Component
 {
     use WithFileUploads;
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
     public $users;
 
     // $ids agar tidak bentrok
@@ -115,8 +120,9 @@ class User extends Component
     public function render()
     {
         // manampilkan semua data user
-        $this->users=tableUser::orderBy('id','DESC')->get();
-        return view('livewire.user')
+        // paginate(1) menampilkan 1 data perhalaman
+        $userss=tableUser::orderBy('id','DESC')->paginate(1);
+        return view('livewire.user',['userss'=>$userss])
         // memasukkan template
         ->extends('layouts.app')
         ->section('content');

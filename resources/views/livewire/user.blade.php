@@ -30,7 +30,7 @@
                     <tbody>
                     @php ($no=1)
 
-                    @foreach ($users as $user)    
+                    @foreach ($userss as $user)    
                     <tr>
                       <th>{{ $no++ }}</th>
                       <td>{{ $user->name }}</td>
@@ -46,6 +46,7 @@
                     </tbody>
                   </table>
             </div>
+            {{ $userss->links() }}
         </div>
       </div>
       <!-- Modal Add Data-->
