@@ -16,6 +16,7 @@
             {{ session('hapus') }}
         @endif
         <div class="card-body">
+          <input wire:model='search' type="text" class="form-contol mb-3" placeholder="Search...">
             <div class="table-responsive">
                 <table class="table">
                     <thead>

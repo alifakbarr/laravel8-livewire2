@@ -23,6 +23,7 @@ class User extends Component
     public $email;
     public $password;
     public $foto;
+    public $search;
     // aturan penulisan yang diinginkan
     protected $rules = [
         'name' => 'required',
@@ -121,7 +122,12 @@ class User extends Component
     {
         // manampilkan semua data user
         // paginate(1) menampilkan 1 data perhalaman
-        $userss=tableUser::orderBy('id','DESC')->paginate(1);
+        $userss=tableUser::
+        where('name', 'like', '%'.$this->search.'%')
+        ->orWhere('email', 'like', '%'.$this->search.'%')
+        ->orderBy('id','DESC')
+        ->paginate(2)
+        ;
         return view('livewire.user',['userss'=>$userss])
         // memasukkan template
         ->extends('layouts.app')
